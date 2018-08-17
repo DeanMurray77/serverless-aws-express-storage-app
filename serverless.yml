@@ -18,7 +18,7 @@ service: serverless-aws-express-storage-app # NOTE: update this with your servic
 # frameworkVersion: "=X.X.X"
 
 custom:
-  tableName: 'users-table-${self:provider.stage}'
+  tableName: 'dean-users-table-${self:provider.stage}'
 
 provider:
   name: aws
@@ -105,7 +105,7 @@ functions:
 # you can add CloudFormation resource templates here
 resources:
   Resources:
-    UsersDnamoDBTable:
+    UsersDynamoDBTable:
       Type: 'AWS::DynamoDB::Table'
       Properties:
         AttributeDefinitions:
@@ -126,3 +126,21 @@ resources:
 #     NewOutput:
 #       Description: "Description for the output"
 #       Value: "Some output value"
+
+
+#Dean Temporarily added this based on a comment at the bottom of the Serverless guide....
+#DynamoDBIamPolicy:
+#Type: AWS::IAM::Policy
+#DependsOn: UsersDynamoDBTable
+#Properties:
+#PolicyName: lambda-dynamodb
+#PolicyDocument:
+#Version: '2012-10-17'
+#Statement:
+#- Effect: Allow
+#Action:
+#- dynamodb:GetItem
+#- dynamodb:PutItem
+#Resource: arn:aws:dynamodb:*:*:table/${self:custom.tableName}
+#Roles:
+#- Ref: IamRoleLambdaExecution
