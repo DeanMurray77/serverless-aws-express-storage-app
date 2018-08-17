@@ -37,7 +37,7 @@ provider:
         - dynamodb:UpdateItem
         - dynamodb:DeleteItem
       Resource:
-        - { "Fn::Join" : ["", ["arn:aws:s3:::", { "Ref" : "ServerlessDeploymentBucket" } ] ]  }
+        - { "Fn::GetAtt": ["UsersDynamoDBTable", "Arn" ] }
 #    - Effect: "Allow"
 #      Action:
 #        - "s3:PutObject"
