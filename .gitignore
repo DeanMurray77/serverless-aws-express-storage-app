@@ -84,6 +84,7 @@ package-lock.json
 
 .idea
 .idea/
+.idea/workspace.xml
 
 # environment variables
 env*.yml
